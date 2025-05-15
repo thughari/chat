@@ -45,6 +45,10 @@ function onConnected() {
     connectingElement.classList.add('hidden');
 }
 
+function updateOnlineUsers(count) {
+    console.log('Online users count: ' + count);
+    document.getElementById('onlineUsers').textContent = `Online Users: ${count}`;
+}
 
 function onError(error) {
     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
@@ -71,6 +75,9 @@ function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
 
     var messageElement = document.createElement('li');
+
+    console.log('Received message: ', message);
+    updateOnlineUsers(message.usersOnline);
 
     if(message.type === 'JOIN') {
         messageElement.classList.add('event-message');
@@ -172,3 +179,12 @@ function clearChatButton() {
 
 usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
+
+// window.addEventListener('beforeunload', function() {
+//     if (stompClient) {
+//         stompClient.send("/app/chat.removeUser",
+//             {},
+//             JSON.stringify({ sender: username, type: 'LEAVE' })
+//         );
+//     }
+// });

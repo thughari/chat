@@ -6,6 +6,7 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
+import com.thughari.chat.controller.ChatController;
 import com.thughari.chat.model.ChatMessage;
 import com.thughari.chat.model.MessageType;
 
@@ -26,10 +27,12 @@ public class WebSocketEventLisetner {
 		 
 		 if(username!=null) {
 			 log.info("user disconnected: "+username);
+			 int OnlineUsersCount = ChatController.onlineUsers.decrementAndGet();
 			 
 			 ChatMessage chatMessage = ChatMessage.builder()
 					 .type(MessageType.LEAVE)
 					 .sender(username)
+					 .usersOnline(OnlineUsersCount)
 					 .build();
 			 messageTemplate.convertAndSend("/topic/public",chatMessage);
 		 }

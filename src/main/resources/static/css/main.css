@@ -150,7 +150,7 @@ button.accent {
 }
 
 #chat-page #messageForm {
-    padding: 20px;
+    padding: 25px;
 }
 
 #chat-page ul li {
@@ -207,21 +207,79 @@ button.accent {
     color: #43464b;
 }
 
+#messageForm {
+    display: flex;
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px solid #ececec;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#messageForm .form-group {
+    width: 100%;
+    margin: 0;
+}
+
+#messageForm .input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 #messageForm .input-group input {
-    float: left;
-    width: calc(100% - 85px);
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+#messageForm .input-group input:focus {
+    border-color: #4CAF50;
 }
 
 #messageForm .input-group button {
-    float: left;
-    width: 80px;
-    height: 38px;
-    margin-left: 5px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#messageForm .input-group button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 480px) {
+    #messageForm {
+        padding: 10px;
+    }
+
+    #messageForm .input-group {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    #messageForm .input-group input {
+        width: 100%;
+    }
+
+    #messageForm .input-group button {
+        width: 100%;
+    }
 }
 
 .chat-header {
     text-align: center;
-    padding: 15px;
+    padding:0% 20px;
+    background-color: #fff;
     border-bottom: 1px solid #ececec;
 }
 
@@ -235,17 +293,37 @@ button.accent {
     text-align: center;
     color: #777;
     position: absolute;
-    top: 65px;
+    top: 200px;
     width: 100%;
 }
 
-.clear-chat {
-    position: absolute;
+.header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.header-actions #onlineUsers {
     font-size: 14px;
-    color: #f10000;
+    font-weight: 500;
+    color: #333;
+}
+
+.header-actions button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
     cursor: pointer;
-    background-color: transparent;
-    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.header-actions button:hover {
+    background-color: #45a049;
 }
 
 @media screen and (max-width: 730px) {
@@ -273,20 +351,20 @@ button.accent {
         height: calc(100% - 120px);
     }
 
-    #messageForm .input-group button {
+    /* #messageForm .input-group button {
         width: 65px;
     }
 
     #messageForm .input-group input {
         width: calc(100% - 70px);
-    }
+    } */
 
     .chat-header {
         padding: 10px;
     }
 
     .connecting {
-        top: 60px;
+        top: 200px;
     }
 
     .chat-header h2 {
